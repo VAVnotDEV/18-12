@@ -32,17 +32,26 @@ int main()
 	fs::permissions("message.txt",
 			fs::perms::group_all | fs::perms::others_all,
 			fs::perm_options::remove);
-
-	user_file << u1 << u2 << std::endl;
-	message_file << m1 << m2 << std::endl;
+	char op;
+	cout << "Select command r-read or w-write\n";
+	cout << "Enter w/r: "; cin >> op;
 	
+	switch (op)
+	{
+		case 'w':
+			user_file << u1 << u2 << std::endl;
+			message_file << m1 << m2 << std::endl;
+		break;
+		case 'r':
 	user_file >> u1;
 	user_file >> u2;
-
 	message_file >> m1 >> m2;
-
 	std::cout << "User 1: " << u1 << '\n' << "User 2: " << u2 << std::endl;
 	std::cout << "Message 1: " << m1 << '\n' << "Message 2: " << m2 << std::endl;
-	       	
+	       	break;
+		default:
+		cout << "No command selected\n";
+	}
+
 	return 0;
 }
